@@ -4,5 +4,5 @@ Description: A wishlist app
 
 Luis Morales: https://github.com/LuiM112<br>
 Alfredo Hernandez: https://github.com/ahernandez1215 <br>
-Orion Furnish: https://github.com/OrionFurnish
+Orion Furnish: https://github.com/OrionFurnish <br>
 Isabel Kasim: https://github.com/Isabel-Kasim
