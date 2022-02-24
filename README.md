@@ -3,6 +3,7 @@
 Description: A wishlist app
 
 Luis Morales: https://github.com/LuiM112<br>
+-Role: Team Lead, can schedule meetings and decide on what needs to be completed
 Alfredo Hernandez: https://github.com/ahernandez1215 <br>
 Orion Furnish: https://github.com/OrionFurnish <br>
 -Role: Tech Expert <br>
