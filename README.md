@@ -1,4 +1,4 @@
-<h1> CST 438 Project 2</h1><br>
+<h1> CST 438 Project 2 Group 06</h1><br>
 
 Description: A wishlist app
 
