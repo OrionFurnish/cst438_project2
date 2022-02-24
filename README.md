@@ -4,4 +4,4 @@ Group
 Description: A wishlist application
 
 Team members:
-Orion Furnish, Luis Morales, Isable Kasim, Alfredo Hernandez 
+Orion Furnish, Luis Morales, Isabel Kasim, Alfredo Hernandez 
