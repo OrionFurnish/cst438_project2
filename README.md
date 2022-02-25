@@ -19,6 +19,6 @@ Reason: Familiar with github <br><br>
 Role: Tech Expert <br>
 Reason: Familiar with internet programming <br><br>
 **Isabel Kasim**: https://github.com/Isabel-Kasim <br>
-Role: <br>
-Reason: <br>
+Role: Tech Expert<br>
+Reason: Background in Internet Programming that involved Node.js, HTML, and use of databases.<br>
 
