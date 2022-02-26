@@ -2,9 +2,9 @@
 
 Description: A wishlist app<br>
 
-Frontend: <br>
+Frontend: Spring Boot and Docker <br>
 
-Backend: <br>
+Backend: ThymeLeaf <br>
 
 Total user stories: <br>
 
