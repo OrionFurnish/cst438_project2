@@ -6,7 +6,7 @@ Frontend: ThymeLeaf   <br>
 
 Backend: Spring Boot and Docker <br>
 
-Total user stories: <br>
+Total user stories: 16 <br>
 
 <h2>Team Members</h2>
 
