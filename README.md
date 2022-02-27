@@ -34,3 +34,9 @@ Item Page                  |  Wishlist Page
 Create Account Page        |  Edit Profile Page
 :-------------------------:|:-------------------------:
 ![](https://i.postimg.cc/9ft03D8k/5-Create-Account.png)     |  ![](https://i.postimg.cc/tgHJm35P/6-Edit-Profile.png)
+
+<br>
+
+# Entity Relationship Diagram (ERD)
+<img src="https://i.postimg.cc/qMc01PNJ/Project-02-Group-06-ERD.png">
+
