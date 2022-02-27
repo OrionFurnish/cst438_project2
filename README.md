@@ -38,5 +38,5 @@ Create Account Page        |  Edit Profile Page
 <br>
 
 # Entity Relationship Diagram (ERD)
-<img src="https://i.postimg.cc/qMc01PNJ/Project-02-Group-06-ERD.png">
+<img src="https://i.postimg.cc/qMc01PNJ/Project-02-Group-06-ERD.png" width="45%" height="45%">
 
