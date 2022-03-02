@@ -1,13 +1,15 @@
-package com.groupsix.cst438_project02_wishlist.database;
+package com.groupsix.cst438_project02_wishlist.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private Integer userId;
     private String userBio;
     private String userDob;
     private String userImgUrl;
@@ -15,11 +17,11 @@ public class User {
     private String password;
     private boolean isAdmin;
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

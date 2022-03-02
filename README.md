@@ -2,11 +2,11 @@
 
 Description: A wishlist app<br>
 
-Frontend: <br>
+Frontend: ThymeLeaf   <br>
 
-Backend: <br>
+Backend: Spring Boot and Docker <br>
 
-Total user stories: <br>
+Total user stories: 16 <br>
 
 <h2>Team Members</h2>
 
@@ -20,5 +20,23 @@ Role: Tech Expert <br>
 Reason: Familiar with internet programming <br><br>
 **Isabel Kasim**: https://github.com/Isabel-Kasim <br>
 Role: Tech Expert<br>
-Reason: Background in Internet Programming that involved Node.js, HTML, and use of databases.<br>
+Reason: Background in Internet Programming that involved Node.js, HTML, and use of databases.<br><br>
+
+# Mockup
+Landing Page               |  Homepage
+:-------------------------:|:-------------------------:
+![](https://i.postimg.cc/qqZgmWbM/1-landing-Page.png)  |  ![](https://i.postimg.cc/9Xx4Fqm5/2-Home-Page.png)
+
+Item Page                  |  Wishlist Page
+:-------------------------:|:-------------------------:
+![](https://i.postimg.cc/QxHFBxCB/3-Item-Page.png)     |  ![](https://i.postimg.cc/sXjX33bg/4-Wishlist-Page.png)
+
+Create Account Page        |  Edit Profile Page
+:-------------------------:|:-------------------------:
+![](https://i.postimg.cc/9ft03D8k/5-Create-Account.png)     |  ![](https://i.postimg.cc/tgHJm35P/6-Edit-Profile.png)
+
+<br>
+
+# Entity Relationship Diagram (ERD)
+<img src="https://i.postimg.cc/qMc01PNJ/Project-02-Group-06-ERD.png" width="75%" height="75%">
 
