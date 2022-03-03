@@ -63,17 +63,19 @@ public class Api {
         return userRepository.findUserById(userId);
     }
 
-    // Can use Optional<String> for optional parameters
+    // Not using this mapping for now. Can ignore.
     @PostMapping(path = "/account_settings")
-    public @ResponseBody String postEditAccount (@RequestParam String username,
+    public @ResponseBody String postEditAccount (@RequestParam Integer userId,
+                                                 @RequestParam String username,
                                                  @RequestParam String password,
-                                                 @RequestParam boolean deleteAccount) {
-        User user = userRepository.findUserByName(username);
+                                                 @RequestParam String confirmPassword,
+                                                 @RequestParam(required = false) boolean deleteAccount) {
+        User user = userRepository.findUserById(userId);
         if(user == null) {
             return "User not found";
         }
 
-        if(!Objects.equals(user.getPassword(), password)) {
+        if(!Objects.equals(user.getPassword(), password) || !Objects.equals(password, confirmPassword)) {
             return "Incorrect password!";
         } else if (deleteAccount) {
             userRepository.delete(user);
@@ -86,10 +88,9 @@ public class Api {
         }
     }
 
-    // Exception handler for missing parameters
-//    @ExceptionHandler(MissingServletRequestParameterException.class)
-//    public void emptyParameters(MissingServletRequestParameterException e) {
-//        String name = e.getParameterName();
-//        System.out.println(name + " is empty parameter!");
-//    }
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public void emptyParameters(MissingServletRequestParameterException e) {
+        String name = e.getParameterName();
+        System.out.println(name + " is empty parameter!");
+    }
 }
