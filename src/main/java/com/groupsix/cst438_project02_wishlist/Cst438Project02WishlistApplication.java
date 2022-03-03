@@ -22,6 +22,9 @@ public class Cst438Project02WishlistApplication {
         return "name";
     }
 
+    @RequestMapping(value = "/login")
+    String login() { return "Login Page"; }
+
 
     public static void main(String[] args) {
         SpringApplication.run(Cst438Project02WishlistApplication.class, args);
