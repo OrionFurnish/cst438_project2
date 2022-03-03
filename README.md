@@ -40,3 +40,7 @@ Create Account Page        |  Edit Profile Page
 # Entity Relationship Diagram (ERD)
 <img src="https://i.postimg.cc/qMc01PNJ/Project-02-Group-06-ERD.png" width="75%" height="75%">
 
+<hr>
+
+### Learning Resources
+[Thymeleaf Documentation](https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html)

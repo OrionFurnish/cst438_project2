@@ -12,17 +12,17 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-    @Query(value = "SELECT * FROM User u WHERE u.name like %name%",
+    @Query(value = "SELECT * FROM User u WHERE u.username like %:username%",
     countQuery = "Select count(*) from User", nativeQuery = true)
 
     User findUserByName(
-            @Param("name") String name
+            @Param("username") String username
     );
 
-    @Query(value = "SELECT * FROM User u WHERE u.userId like %userId%",
+    @Query(value = "SELECT * FROM User u WHERE u.user_id like %:user_id%",
     countQuery = "Select count(*) from User", nativeQuery = true)
 
     User findUserById(
-            @Param("userId") int userId
+            @Param("user_id") Integer user_id
     );
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Settings</title>
+    <link th:href="@{/css/account.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>Account Settings</h1>
+<th:block>
+    <p th:text="${error_msg}"/>
+</th:block>
+
+<th:block>
+    <img th:src="${user?.getUserImgUrl()}" width="250" class="img-fluid rounded"><br>
+    <p th:text="${'Name: ' + user?.getUsername()}"/>
+</th:block>
+
+
+</body>
+</html>
