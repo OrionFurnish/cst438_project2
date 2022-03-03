@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Settings</title>
+    <link th:href="@{/css/account.css}" rel="stylesheet" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<div class="d-flex justify-content-center">
+    <div>
+        <h1>Account Settings</h1>
+        <th:block>
+            <p th:text="${error_msg}"/>
+        </th:block>
+
+        <th:block>
+            <img th:src="${{session.User_Session.getUserImgUrl()}}" width="250" class="img-fluid rounded"><br>
+            <p th:text="${'Current User: ' + session.User_Session.getUsername()}"/><br><br>
+
+        </th:block>
+
+        <div class="input-group">
+            <form th:action="@{/account_settings/(userId=${session.User_Session.getUserId()})}" th:object="${session.User_Session}" method="POST">
+                Username:<input class="form-control" type="text" th:name="username" th:value="${session.User_Session.getUsername()}"><br><br>
+                Current Password:<input class="form-control" type="text" th:name="password"><br><br>
+                New Password:<input class="form-control" type="text" th:name="newPassword"><br><br>
+                <!--Add button to delete account with confirmation -->
+                <!-- Basic Functionality added. No verification yet -->
+
+                <input type="hidden" name="userId" id="userId" th:value="${session.User_Session.getUserId()}">
+                <input type="submit" value="Update Account"/>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
