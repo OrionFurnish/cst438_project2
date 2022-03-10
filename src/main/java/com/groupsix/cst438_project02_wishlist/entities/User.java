@@ -1,4 +1,4 @@
-package com.groupsix.cst438_project02_wishlist.models;
+package com.groupsix.cst438_project02_wishlist.entities;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.groupsix.cst438_project02_wishlist;
 
-import com.groupsix.cst438_project02_wishlist.models.User;
+import com.groupsix.cst438_project02_wishlist.entities.User;
 import com.groupsix.cst438_project02_wishlist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

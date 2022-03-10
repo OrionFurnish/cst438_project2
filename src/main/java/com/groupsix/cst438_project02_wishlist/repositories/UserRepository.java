@@ -1,12 +1,10 @@
 package com.groupsix.cst438_project02_wishlist.repositories;
 
 
-import com.groupsix.cst438_project02_wishlist.models.User;
+import com.groupsix.cst438_project02_wishlist.entities.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 /**
  *  Used to access the User from the database.

@@ -1,15 +1,12 @@
 package com.groupsix.cst438_project02_wishlist;
 
-import com.groupsix.cst438_project02_wishlist.models.User;
+import com.groupsix.cst438_project02_wishlist.entities.User;
 import com.groupsix.cst438_project02_wishlist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequestMapping(path="/api")
