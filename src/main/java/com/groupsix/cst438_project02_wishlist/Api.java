@@ -37,9 +37,7 @@ public class Api {
                                                 @RequestParam String dob,
                                                 @RequestParam String userImgUrl,
                                                 @RequestParam (required = false) boolean isAdmin) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
+        User user = new User(username, password);
         user.setUserBio(bio);
         user.setUserDob(dob);
         user.setUserImgUrl(userImgUrl);
@@ -95,9 +93,7 @@ public class Api {
                                          @RequestParam String bio,
                                          @RequestParam String dob,
                                          @RequestParam String userImgUrl) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
+        User user = new User(username, password);
         user.setUserBio(bio);
         user.setUserDob(dob);
         user.setUserImgUrl(userImgUrl);
