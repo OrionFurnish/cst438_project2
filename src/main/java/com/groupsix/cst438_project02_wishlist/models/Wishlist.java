@@ -1,4 +1,4 @@
-package com.groupsix.cst438_project02_wishlist.entities;
+package com.groupsix.cst438_project02_wishlist.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
