@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
+</head>
+<body>
+    <h2>Create Account</h2>
+    <form th:action="@{/create_account}" method="POST">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" th:name="username" th:value="${Username}"><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" th:name="password" th:value="${Password}"><br>
+        <label for="confirm-password">Confirm Password:</label><br>
+        <input type="text" id="confirm-password" th:name="confirmPassword" th:value="${Confirm_Password}"><br>
+        <p id="error" th:text="${Error_Message}"></p><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

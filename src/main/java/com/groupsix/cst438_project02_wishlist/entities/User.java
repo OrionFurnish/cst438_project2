@@ -1,9 +1,7 @@
 package com.groupsix.cst438_project02_wishlist.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -16,6 +14,19 @@ public class User {
     private String username;
     private String password;
     private boolean isAdmin;
+
+    public User() {
+
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.isAdmin = false;
+    }
+
+    @OneToMany
+    private List<Wishlist> wishlists;
 
     public Integer getUserId() {
         return userId;
@@ -71,5 +82,13 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public List<Wishlist> getWishlists() {
+        return wishlists;
+    }
+
+    public void setWishlists(List<Wishlist> wishlists) {
+        this.wishlists = wishlists;
     }
 }

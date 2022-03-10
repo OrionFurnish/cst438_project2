@@ -1,9 +1,7 @@
 package com.groupsix.cst438_project02_wishlist.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -14,13 +12,9 @@ public class Wishlist {
     private Integer userId;
     private String listName;
 
-//    // TODO: Create db table for wishlist attribute: itemsPriority
-//    //       key = itemId, value = priority. Used to store all our items in current list.
-//    //       potential issues.... items may have same priority. Maybe change this.
-//    // https://www.baeldung.com/java-jpa-lazy-collections
-//    @ElementCollection
-//    @MapKeyColumn(name = "itemId")
-//    private Map<Integer, Integer> items;
+    @OneToMany
+    private List<Item> items; // Handle response in controller
+    // Save items before adding wishlist to database.
 
     public Integer getWishlistId() {
         return wishlistId;
@@ -46,11 +40,11 @@ public class Wishlist {
         this.listName = listName;
     }
 
-//    public Map<Integer, Integer> getItems() {
-//        return items;
-//    }
+    public List<Item> getItems() {
+        return items;
+    }
 
-//    public void setItems(Map<Integer, Integer> items) {
-//        this.items = items;
-//    }
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 }
