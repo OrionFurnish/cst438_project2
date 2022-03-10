@@ -1,16 +1,12 @@
 package com.groupsix.cst438_project02_wishlist;
 
-import com.groupsix.cst438_project02_wishlist.entities.Item;
 import com.groupsix.cst438_project02_wishlist.entities.User;
-import com.groupsix.cst438_project02_wishlist.repositories.ItemRepository;
 import com.groupsix.cst438_project02_wishlist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequestMapping(path="/api")
@@ -19,12 +15,9 @@ public class Api {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ItemRepository itemRepository;
-
     @GetMapping(path = "/findUserByUsername")
     public @ResponseBody User getUserByName(String username) {
-        return userRepository.findUserByName(username);
+        return userRepository.findUserByUsername(username);
     }
 
     @GetMapping(path = "/findUserById")
@@ -32,21 +25,80 @@ public class Api {
         return userRepository.findUserById(userId);
     }
 
-    @PostMapping(path = "/createUser")
-    public @ResponseBody String createUser (@RequestParam String username,
-                                            @RequestParam String password,
-                                            @RequestParam String bio,
-                                            @RequestParam String dob,
-                                            @RequestParam String userImgUrl) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
+    @GetMapping(path = "/users")
+    public @ResponseBody Iterable<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @PutMapping(path = "/users")
+    public ResponseEntity<User> adminCreateUser(@RequestParam String username,
+                                                @RequestParam String password,
+                                                @RequestParam String bio,
+                                                @RequestParam String dob,
+                                                @RequestParam String userImgUrl,
+                                                @RequestParam (required = false) boolean isAdmin) {
+        User user = new User(username, password);
         user.setUserBio(bio);
         user.setUserDob(dob);
-        user.setAdmin(false);
         user.setUserImgUrl(userImgUrl);
+        user.setAdmin(isAdmin);
         userRepository.save(user);
 
+        User updatedUser = userRepository.save(user);
+        return ResponseEntity.ok(updatedUser);
+    }
+
+    @DeleteMapping(path = "/users")
+    public @ResponseBody String adminDeleteUser (@RequestParam String username,
+                                                 @RequestParam String password,
+                                                 @RequestParam String confirmPassword) {
+        User user = userRepository.findUserByUsername(username);
+
+        if(user == null) {
+            return "User doesn't exist";
+        } else if (!password.equals(confirmPassword)) {
+            return "Password incorrect";
+        } else if (user.getUsername().equals(username)) {
+            userRepository.delete(user);
+            return "User deleted";
+        }
+        return "User not deleted";
+    }
+
+    @PatchMapping(path = "/users")
+    public @ResponseBody String adminUpdateUser (@RequestParam String username,
+                                                 @RequestParam String password,
+                                                 @RequestParam String bio,
+                                                 @RequestParam String dob,
+                                                 @RequestParam String userImgUrl,
+                                                 @RequestParam (required = false) boolean isAdmin) {
+        User user = userRepository.findUserByUsername(username);
+
+        if(user == null) {
+            return "User doesn't exist";
+        } else {
+            user.setPassword(password);
+            user.setUserBio(bio);
+            user.setUserDob(dob);
+            user.setUserImgUrl(userImgUrl);
+            user.setAdmin(isAdmin);
+            userRepository.save(user);
+            return "User: " + username + " was updated";
+        }
+    }
+
+    @PostMapping(path = "/newuser")
+    public @ResponseBody String newUser (@RequestParam String username,
+                                         @RequestParam String password,
+                                         @RequestParam String bio,
+                                         @RequestParam String dob,
+                                         @RequestParam String userImgUrl) {
+        User user = new User(username, password);
+        user.setUserBio(bio);
+        user.setUserDob(dob);
+        user.setUserImgUrl(userImgUrl);
+        user.setAdmin(false);
+        userRepository.save(user);
         return "Account create successful";
     }
 
@@ -69,35 +121,6 @@ public class Api {
         return userRepository.findUserById(userId);
     }
 
-    @PostMapping(path = "/addItem")
-    public @ResponseBody String addItem (@RequestParam String itemUrl,
-                                         @RequestParam String itemImgUrl,
-                                         @RequestParam String itemName,
-                                         @RequestParam String itemDetails){
-        Item item = new Item();
-
-        item.setItemUrl(itemUrl);
-        item.setItemImgUrl(itemImgUrl);
-        item.setItemName(itemName);
-        item.setItemDetails(itemDetails);
-
-        itemRepository.save(item);
-
-        return "Item added";
-
-    }
-
-    @GetMapping(path = "/getAllItems")
-    public @ResponseBody Iterable<Item> getAllItems() {
-        return itemRepository.findAll();
-    }
-
-    @GetMapping(path = "/findItemByName")
-    public @ResponseBody List<Item> findItemByName (@RequestParam String itemName) {
-        return itemRepository.findItemByName(itemName);
-    }
-
-    // Not using this mapping for now. Can ignore.
     @PostMapping(path = "/account_settings")
     public @ResponseBody String postEditAccount (@RequestParam Integer userId,
                                                  @RequestParam String username,
@@ -107,9 +130,7 @@ public class Api {
         User user = userRepository.findUserById(userId);
         if(user == null) {
             return "User not found";
-        }
-
-        if(!Objects.equals(user.getPassword(), password) || !Objects.equals(password, confirmPassword)) {
+        } else if(!password.equals(user.getPassword()) || !password.equals(confirmPassword)) {
             return "Incorrect password!";
         } else if (deleteAccount) {
             userRepository.delete(user);
