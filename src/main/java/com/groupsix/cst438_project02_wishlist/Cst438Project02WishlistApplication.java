@@ -1,19 +1,27 @@
 package com.groupsix.cst438_project02_wishlist;
 
+import com.groupsix.cst438_project02_wishlist.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+
 @Controller
 @SpringBootApplication
 public class Cst438Project02WishlistApplication {
 
     @RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Group 06 Wishlist Application!";
+     String home(HttpSession session, HttpServletResponse response) throws IOException {
+        User user = (User)session.getAttribute("User_Session");
+        if(user == null) {
+            response.sendRedirect("/landing");
+        }
+        return "home";
     }
 
     @RequestMapping(value = "/name")
@@ -21,9 +29,6 @@ public class Cst438Project02WishlistApplication {
     String name() {
         return "name";
     }
-
-    @RequestMapping(value = "/login")
-    String login() { return "Login Page"; }
 
 
     public static void main(String[] args) {

@@ -15,6 +15,16 @@ public class User {
     private String password;
     private boolean isAdmin;
 
+    public User() {
+
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.isAdmin = false;
+    }
+
     @OneToMany
     private List<Wishlist> wishlists;
 
