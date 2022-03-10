@@ -12,7 +12,7 @@ Total user stories: 16 <br>
 
 **Luis Morales**: https://github.com/LuiM112<br>
 Role: Team Lead<br> 
-Reason: can schedule meetings and decide on what needs to be completed<br>
+Reason: can schedule meetings and decide on what needs to be completed<br><br>
 **Alfredo Hernandez**: https://github.com/ahernandez1215 <br>
 Role: Github Expert<br>
 Reason: Familiar with github <br><br>
