@@ -5,18 +5,29 @@ import com.groupsix.cst438_project02_wishlist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ *  A class for handling all web requests
+ */
 @Controller
-public class AccountController {
+public class FrontEndController {
     public static String BASE_URI = "http://localhost:8080/api/";
 
     @Autowired
     UserRepository userRepository;
+
+    @RequestMapping(value = "/landing")
+    String landing_page() {
+        return "landing_page";
+    }
+
 
     @RequestMapping(value = "/account_settings")
     String account_settings(Model model, HttpSession session, @RequestParam Integer userId){
