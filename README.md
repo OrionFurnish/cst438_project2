@@ -24,24 +24,26 @@ Role: Tech Expert<br>
 Reason: Background in Internet Programming that involved Node.js, HTML, and use of databases.<br><br>
 
 # Mockup
-Landing Page               |  Homepage
-:-------------------------:|:-------------------------:
-![](https://i.postimg.cc/qqZgmWbM/1-landing-Page.png)  |  ![](https://i.postimg.cc/9Xx4Fqm5/2-Home-Page.png)
+|                     Landing Page                      |                      Homepage                      |
+|:-----------------------------------------------------:|:--------------------------------------------------:|
+| ![](https://i.postimg.cc/qqZgmWbM/1-landing-Page.png) | ![](https://i.postimg.cc/9Xx4Fqm5/2-Home-Page.png) |
 
-Item Page                  |  Wishlist Page
-:-------------------------:|:-------------------------:
-![](https://i.postimg.cc/QxHFBxCB/3-Item-Page.png)     |  ![](https://i.postimg.cc/sXjX33bg/4-Wishlist-Page.png)
+|                     Item Page                      |                     Wishlist Page                      |
+|:--------------------------------------------------:|:------------------------------------------------------:|
+| ![](https://i.postimg.cc/QxHFBxCB/3-Item-Page.png) | ![](https://i.postimg.cc/sXjX33bg/4-Wishlist-Page.png) |
 
-Create Account Page        |  Edit Profile Page
-:-------------------------:|:-------------------------:
-![](https://i.postimg.cc/9ft03D8k/5-Create-Account.png)     |  ![](https://i.postimg.cc/tgHJm35P/6-Edit-Profile.png)
+|                   Create Account Page                   |                   Edit Profile Page                   |
+|:-------------------------------------------------------:|:-----------------------------------------------------:|
+| ![](https://i.postimg.cc/9ft03D8k/5-Create-Account.png) | ![](https://i.postimg.cc/tgHJm35P/6-Edit-Profile.png) |
 
 <br>
 
-# Entity Relationship Diagram (ERD)
+# Original Entity Relationship Diagram (ERD)
 <img src="https://i.postimg.cc/qMc01PNJ/Project-02-Group-06-ERD.png" width="75%" height="75%">
 
 <hr>
 
 ### Learning Resources
-[Thymeleaf Documentation](https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html)
+[Thymeleaf Documentation](https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html) <br>
+[Spring Optional Path Variables](https://www.baeldung.com/spring-optional-path-variables) <br>
+[Mapping Types Spring Boot](https://www.javaguides.net/2018/11/spring-getmapping-postmapping-putmapping-deletemapping-patchmapping.html)
