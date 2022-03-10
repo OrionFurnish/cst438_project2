@@ -1,12 +1,15 @@
 package com.groupsix.cst438_project02_wishlist;
 
+import com.groupsix.cst438_project02_wishlist.entities.Item;
 import com.groupsix.cst438_project02_wishlist.entities.User;
+import com.groupsix.cst438_project02_wishlist.repositories.ItemRepository;
 import com.groupsix.cst438_project02_wishlist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -15,6 +18,9 @@ public class Api {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     @GetMapping(path = "/findUserByUsername")
     public @ResponseBody User getUserByName(String username) {
@@ -61,6 +67,34 @@ public class Api {
     @GetMapping(path = "/account_settings")
     public @ResponseBody User getEditAccount (@RequestParam Integer userId) {
         return userRepository.findUserById(userId);
+    }
+
+    @PostMapping(path = "/addItem")
+    public @ResponseBody String addItem (@RequestParam String itemUrl,
+                                         @RequestParam String itemImgUrl,
+                                         @RequestParam String itemName,
+                                         @RequestParam String itemDetails){
+        Item item = new Item();
+
+        item.setItemUrl(itemUrl);
+        item.setItemImgUrl(itemImgUrl);
+        item.setItemName(itemName);
+        item.setItemDetails(itemDetails);
+
+        itemRepository.save(item);
+
+        return "Item added";
+
+    }
+
+    @GetMapping(path = "/getAllItems")
+    public @ResponseBody Iterable<Item> getAllItems() {
+        return itemRepository.findAll();
+    }
+
+    @GetMapping(path = "/findItemByName")
+    public @ResponseBody List<Item> findItemByName (@RequestParam String itemName) {
+        return itemRepository.findItemByName(itemName);
     }
 
     // Not using this mapping for now. Can ignore.
