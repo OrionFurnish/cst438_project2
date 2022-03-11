@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="/api")
 public class Api {
 
-
     @Autowired
     private UserRepository userRepository;
 
