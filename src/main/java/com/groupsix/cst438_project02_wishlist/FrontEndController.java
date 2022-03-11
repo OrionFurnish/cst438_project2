@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  *  A class for handling all web requests
@@ -30,39 +30,63 @@ public class FrontEndController {
 
 
     @RequestMapping(value = "/account_settings")
-    String account_settings(Model model, HttpSession session, @RequestParam Integer userId){
-        if(userId == null) {
-            model.addAttribute("error_msg", "User not found");
+    String account_settings(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+        HttpSession session = request.getSession(false);
+
+        // Redirect if user is not logged in
+        if(session == null || session.isNew()) {
+            response.sendRedirect("/login");
+            return "login_page";
+        } else {
+            model.addAttribute("username", ((User) session.getAttribute("User_Session")).getUsername());
             return "account_settings";
         }
 
-        String uri = BASE_URI + "account_settings" + "?userId=" + userId; //Add params to BASE URI to know which user is logged in
-        RestTemplate restTemplate = new RestTemplate(); // Convert response from API into JSON Object compatible with User
-
-        User user = restTemplate.getForObject(uri, User.class); // Converts JSON Object into User Object
-        model.addAttribute("user", user); // attribute to later access from html template
-
-        // Add user to a session
-        session.setAttribute("User_Session", user);
-
-        return "account_settings"; // pointing to account settings html template
-    }
-
     @RequestMapping(value = "/account_settings", method = RequestMethod.POST)
     String account_settings(HttpServletRequest request,
-                            @RequestParam Integer userId,
+                            HttpServletResponse response,
+                            Model model,
                             @RequestParam String username,
                             @RequestParam String password,
-                            @RequestParam String newPassword,
-                            @RequestParam(required = false) boolean deleteAccount) {
+                            @RequestParam(required = false) String newPassword,
+                            @RequestParam(required = false) boolean deleteAccount) throws IOException {
+        User user = (User) request.getSession().getAttribute("User_Session");
 
-        User user = userRepository.findUserById(userId);
+        if (deleteAccount) {
+            if(user.getPassword().equals(password)) {
+                userRepository.delete(user);
+                response.sendRedirect("/landing");
+                request.getSession().invalidate();
+                return "landing_page";
+            } else {
+                model.addAttribute("Error_Msg", "Requires current password to delete");
+            }
 
-        user.setUsername(username);
-        user.setPassword(newPassword);
-        userRepository.save(user);
-        request.getSession().setAttribute("User_Session", user);
+        } else {
+            if(!username.isEmpty()) {
+                if (user.getPassword().equals(password)) {
+                    user.setUsername(username);
 
+                    if(!newPassword.isEmpty()) {
+                        user.setPassword(newPassword);
+                    }
+
+                    userRepository.save(user);
+                    request.getSession().setAttribute("User_Session", user);
+                    model.addAttribute("username", user.getUsername());
+                    response.sendRedirect("/account_settings?update_success=Account+updated+successfully.");
+                } else {
+                    model.addAttribute("Error_Msg", "Incorrect current password");
+                }
+            } else {
+                model.addAttribute("Error_Msg", "Can't have empty username");
+            }
+        }
+
+        model.addAttribute("username", user.getUsername());
         return "account_settings";
     }
+
+    @RequestMapping(value = "/editAccount")
+    String edit_account() { return "landing_page";} // TODO: change to edit account html file
 }

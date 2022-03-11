@@ -11,21 +11,25 @@
 <body>
 <!-- Add navigation bar -->
 
-<h1 class="text-center p-5">Account Settings</h1>
+<h1 class="text-center p-4">Account Settings</h1>
+<p class="text-center" th:text="${Error_Msg}"></p><br>
+<p class="text-center" th:text="${param.update_success}"></p><br>
 
 <div class="d-flex justify-content-center text-center">
     <div>
-        <div class="input-group">
-            <form th:action="@{/account_settings/(userId=${session.User_Session.getUserId()})}" th:object="${session.User_Session}" method="POST">
-                Username<input class="form-control" type="text" th:name="username" th:value="${session.User_Session.getUsername()}"><br><br>
+        <div >
+            <form th:action="@{/account_settings}" method="POST">
+                Username<input class="form-control" id="username" type="text" th:name="username" th:value="${username}"><br><br>
                 Current Password<input class="form-control" type="text" th:name="password"><br><br>
                 New Password<input class="form-control" type="text" th:name="newPassword"><br><br>
-                <!--Add button to delete account with confirmation -->
-                <!-- Basic Functionality added. No verification yet -->
 
-                <input type="hidden" name="userId" id="userId" th:value="${session.User_Session.getUserId()}">
-                <input class="form-control btn btn-primary" type="submit" value="Update Account"/>
+                <input class="form-control btn btn-primary" type="submit" value="Update Account"/> <br><br>
+                Delete Account
+                <input class="form-control btn btn-primary" type="submit" th:name="deleteAccount" th:value=true value="Delete Account"/>
+            </form><br>
 
+            <form th:action="@{/}">
+                <input class="form-control btn btn-primary" type="submit" value="Back"/>
             </form>
         </div>
     </div>
