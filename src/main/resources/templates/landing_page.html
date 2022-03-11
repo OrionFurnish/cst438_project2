@@ -13,12 +13,9 @@
 
 <div class="d-flex justify-content-center">
     <div>
-        <div style="padding-top: 30px">
-            <form th:action="@{/login}">
+        <div class="input-group" style="padding-top: 30px">
+            <form method="POST">
                 <input class="form-control btn btn-primary" type="submit" value="Login"> <br><br>
-            </form>
-
-            <form th:action="@{/create_account}">
                 <input class="form-control btn btn-primary" type="submit" value="Create Account">
             </form>
         </div>
