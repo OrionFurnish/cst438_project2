@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,6 +28,7 @@ public class FrontEndController {
         return "landing_page";
     }
 
+
     @RequestMapping(value = "/account_settings")
     String account_settings(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
         HttpSession session = request.getSession(false);
@@ -41,7 +41,6 @@ public class FrontEndController {
             model.addAttribute("username", ((User) session.getAttribute("User_Session")).getUsername());
             return "account_settings";
         }
-    }
 
     @RequestMapping(value = "/account_settings", method = RequestMethod.POST)
     String account_settings(HttpServletRequest request,
