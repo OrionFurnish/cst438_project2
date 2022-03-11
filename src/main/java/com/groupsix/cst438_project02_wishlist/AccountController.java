@@ -18,16 +18,11 @@ import java.io.IOException;
  *  A class for handling all web requests
  */
 @Controller
-public class FrontEndController {
+public class AccountController {
     public static String BASE_URI = "http://localhost:8080/api/";
 
     @Autowired
     UserRepository userRepository;
-
-    @RequestMapping(value = "/landing")
-    String landing_page() {
-        return "landing_page";
-    }
 
     @RequestMapping(value = "/account_settings")
     String account_settings(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
@@ -87,7 +82,4 @@ public class FrontEndController {
         model.addAttribute("username", user.getUsername());
         return "account_settings";
     }
-
-    @RequestMapping(value = "/editAccount")
-    String edit_account() { return "profile_edit";}
 }
