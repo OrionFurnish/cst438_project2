@@ -65,17 +65,15 @@ public class ProfileController {
                              Model model,
                              @RequestParam String username,
                              @RequestParam String bio,
-                             @RequestParam String imageUrl,
-                             @RequestParam String dob) throws IOException {
+                             @RequestParam String imageUrl) throws IOException {
         User user = (User) request.getSession().getAttribute("User_Session");
 
-        if(username.isEmpty() || bio.isEmpty() || imageUrl.isEmpty() || dob.isEmpty()) {
+        if(username.isEmpty() || bio.isEmpty() || imageUrl.isEmpty()) {
             model.addAttribute("Error_Msg", "Cannot have empty fields.");
         } else {
             user.setUsername(username);
             user.setUserBio(bio);
             user.setUserImgUrl(imageUrl);
-            user.setUserDob(dob);
             userRepository.save(user);
             request.getSession().setAttribute("User_Session", user);
             response.sendRedirect("profile_edit?update_success=Profile+updated+successfully.");
