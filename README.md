@@ -8,6 +8,8 @@ Backend: Spring Boot and Docker <br>
 
 Total user stories: 16 <br>
 
+Agile Chart [Here](https://docs.google.com/spreadsheets/d/e/2PACX-1vRIOkGW9-96SggpwWH3LGR5iaCLZx1JWH2g3AIXn2Nk_z8WhchcEORqti9b9e4GnrUDGxzDkrHw4JxA/pubhtml)
+
 <h2>Team Members</h2>
 
 **Luis Morales**: https://github.com/LuiM112<br>
