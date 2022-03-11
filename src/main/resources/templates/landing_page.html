@@ -11,12 +11,14 @@
 <body>
 <h1 class="p-5 text-center">Welcome!</h1>
 
-
 <div class="d-flex justify-content-center">
     <div>
-        <div class="input-group" style="padding-top: 30px">
-            <form method="POST">
+        <div style="padding-top: 30px">
+            <form th:action="@{/login}">
                 <input class="form-control btn btn-primary" type="submit" value="Login"> <br><br>
+            </form>
+
+            <form th:action="@{/create_account}">
                 <input class="form-control btn btn-primary" type="submit" value="Create Account">
             </form>
         </div>
