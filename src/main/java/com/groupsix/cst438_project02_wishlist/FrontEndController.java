@@ -28,7 +28,6 @@ public class FrontEndController {
         return "landing_page";
     }
 
-
     @RequestMapping(value = "/account_settings")
     String account_settings(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
         HttpSession session = request.getSession(false);
@@ -43,52 +42,51 @@ public class FrontEndController {
         }
     }
 
-        @RequestMapping(value = "/account_settings", method = RequestMethod.POST)
-        String account_settings (HttpServletRequest request,
-                HttpServletResponse response,
-                Model model,
-                @RequestParam String username,
-                @RequestParam String password,
-                @RequestParam(required = false) String newPassword,
-        @RequestParam(required = false) boolean deleteAccount) throws IOException {
-            User user = (User) request.getSession().getAttribute("User_Session");
+    @RequestMapping(value = "/account_settings", method = RequestMethod.POST)
+    String account_settings(HttpServletRequest request,
+                            HttpServletResponse response,
+                            Model model,
+                            @RequestParam String username,
+                            @RequestParam String password,
+                            @RequestParam(required = false) String newPassword,
+                            @RequestParam(required = false) boolean deleteAccount) throws IOException {
+        User user = (User) request.getSession().getAttribute("User_Session");
 
-            if (deleteAccount) {
-                if (user.getPassword().equals(password)) {
-                    userRepository.delete(user);
-                    response.sendRedirect("/landing");
-                    request.getSession().invalidate();
-                    return "landing_page";
-                } else {
-                    model.addAttribute("Error_Msg", "Requires current password to delete");
-                }
-
+        if (deleteAccount) {
+            if(user.getPassword().equals(password)) {
+                userRepository.delete(user);
+                response.sendRedirect("/landing");
+                request.getSession().invalidate();
+                return "landing_page";
             } else {
-                if (!username.isEmpty()) {
-                    if (user.getPassword().equals(password)) {
-                        user.setUsername(username);
-
-                        if (!newPassword.isEmpty()) {
-                            user.setPassword(newPassword);
-                        }
-
-                        userRepository.save(user);
-                        request.getSession().setAttribute("User_Session", user);
-                        model.addAttribute("username", user.getUsername());
-                        response.sendRedirect("/account_settings?update_success=Account+updated+successfully.");
-                    } else {
-                        model.addAttribute("Error_Msg", "Incorrect current password");
-                    }
-                } else {
-                    model.addAttribute("Error_Msg", "Can't have empty username");
-                }
+                model.addAttribute("Error_Msg", "Requires current password to delete");
             }
 
-            model.addAttribute("username", user.getUsername());
-            return "account_settings";
+        } else {
+            if(!username.isEmpty()) {
+                if (user.getPassword().equals(password)) {
+                    user.setUsername(username);
+
+                    if(!newPassword.isEmpty()) {
+                        user.setPassword(newPassword);
+                    }
+
+                    userRepository.save(user);
+                    request.getSession().setAttribute("User_Session", user);
+                    model.addAttribute("username", user.getUsername());
+                    response.sendRedirect("/account_settings?update_success=Account+updated+successfully.");
+                } else {
+                    model.addAttribute("Error_Msg", "Incorrect current password");
+                }
+            } else {
+                model.addAttribute("Error_Msg", "Can't have empty username");
+            }
         }
 
+        model.addAttribute("username", user.getUsername());
+        return "account_settings";
+    }
 
     @RequestMapping(value = "/editAccount")
-    String edit_account() { return "landing_page";} // TODO: change to edit account html file
+    String edit_account() { return "profile_edit";}
 }
