@@ -13,14 +13,7 @@ public class Wishlist {
     private Integer wishlistId;
     private Integer userId;
     private String listName;
-
-//    // TODO: Create db table for wishlist attribute: itemsPriority
-//    //       key = itemId, value = priority. Used to store all our items in current list.
-//    //       potential issues.... items may have same priority. Maybe change this.
-//    // https://www.baeldung.com/java-jpa-lazy-collections
-//    @ElementCollection
-//    @MapKeyColumn(name = "itemId")
-//    private Map<Integer, Integer> items;
+    private Item items;
 
     public Integer getWishlistId() {
         return wishlistId;
@@ -46,11 +39,7 @@ public class Wishlist {
         this.listName = listName;
     }
 
-//    public Map<Integer, Integer> getItems() {
-//        return items;
-//    }
-
-//    public void setItems(Map<Integer, Integer> items) {
-//        this.items = items;
-//    }
+    public String getItems() {
+        return items.getItemName();
+    }
 }

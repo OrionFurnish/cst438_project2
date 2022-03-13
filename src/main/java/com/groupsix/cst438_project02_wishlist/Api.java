@@ -4,6 +4,7 @@ import com.groupsix.cst438_project02_wishlist.entities.Item;
 import com.groupsix.cst438_project02_wishlist.entities.User;
 import com.groupsix.cst438_project02_wishlist.repositories.ItemRepository;
 import com.groupsix.cst438_project02_wishlist.repositories.UserRepository;
+import com.groupsix.cst438_project02_wishlist.repositories.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class Api {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private WishlistRepository wishlistRepository;
 
     @GetMapping(path = "/findUserByUsername")
     public @ResponseBody User getUserByName(String username) {
@@ -150,6 +154,7 @@ public class Api {
         return "Item added";
 
     }
+
 
     @GetMapping(path = "/getAllItems")
     public @ResponseBody Iterable<Item> getAllItems() {
