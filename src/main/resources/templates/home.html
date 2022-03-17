@@ -19,6 +19,12 @@
             <form th:action="@{/profile_edit}">
                 <input class="form-control btn btn-primary" type="submit" value="Edit Profile"> <br><br>
             </form>
+
+            <tr th:if="${user?.isAdmin()}">
+                <form th:action="@{/admin_view_users}">
+                    <input class="form-control btn btn-primary" type="submit" value="View Users"> <br><br>
+                </form>
+            </tr>
         </div>
     </div>
 </div>

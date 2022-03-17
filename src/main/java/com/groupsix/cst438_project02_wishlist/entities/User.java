@@ -13,7 +13,8 @@ public class User {
     private String userImgUrl;
     private String username;
     private String password;
-    private boolean isAdmin;
+    private boolean isAdmin; // unused
+    private boolean admin;
 
     public User() {
 
@@ -22,7 +23,13 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.isAdmin = false;
+        this.admin = false;
+    }
+
+    public User(String username, String password, boolean admin) {
+        this.username = username;
+        this.password = password;
+        this.admin = admin;
     }
 
     @OneToMany
@@ -77,11 +84,11 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public List<Wishlist> getWishlists() {
