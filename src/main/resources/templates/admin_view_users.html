@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/userlist.css}" rel="stylesheet" />
+</head>
+<body>
+    <form th:action="@{/admin_update_users}">
+        <input type="submit" id="editButton" th:value="Edit">
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th> User </th>
+            <th> Password </th>
+            <th> Admin </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td><span th:text="${user.username}"> </span></td>
+            <td><span th:text="${user.password}"> </span></td>
+            <td><span th:text="${user.admin}"> </span></td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

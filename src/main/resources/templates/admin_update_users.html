@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/userlist.css}" rel="stylesheet" />
+</head>
+<body>
+    <form action="#" th:action="@{/admin_update_users}" method="POST" th:object="${userForm}">
+        <table>
+            <thead>
+            <tr>
+                <th> User </th>
+                <th> Password </th>
+                <th> Admin </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user, stat : ${userForm.userList}">
+                <td>
+                    <input type="hidden" th:field="*{userList[__${stat.index}__].userId}"/>
+                    <input type="hidden" th:field="*{userList[__${stat.index}__].userBio}"/>
+                    <input type="hidden" th:field="*{userList[__${stat.index}__].userDob}"/>
+                    <input type="hidden" th:field="*{userList[__${stat.index}__].userImgUrl}"/>
+                </td>
+                <td><input type="text" th:value="${user.getUsername()}" th:field="*{userList[__${stat.index}__].username}"/> </td>
+                <td><input type="text" th:value="${user.getPassword()}" th:field="*{userList[__${stat.index}__].password}" /> </td>
+                <td><input type="checkbox" th:checked="${user.admin}" th:field="*{userList[__${stat.index}__].admin}" /> </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit"> Save Changes </button>
+    </form>
+</body>
+</html>

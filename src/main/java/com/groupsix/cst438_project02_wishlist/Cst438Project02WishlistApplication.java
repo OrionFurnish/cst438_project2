@@ -1,9 +1,11 @@
 package com.groupsix.cst438_project02_wishlist;
 
 import com.groupsix.cst438_project02_wishlist.entities.User;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,11 +18,12 @@ import java.io.IOException;
 public class Cst438Project02WishlistApplication {
 
     @RequestMapping("/")
-     String home(HttpSession session, HttpServletResponse response) throws IOException {
+     String home(HttpSession session, HttpServletResponse response, Model model) throws IOException {
         User user = (User)session.getAttribute("User_Session");
         if(user == null) {
             response.sendRedirect("/landing");
         }
+        model.addAttribute("user", user);
         return "home";
     }
 
