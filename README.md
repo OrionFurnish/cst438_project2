@@ -8,6 +8,8 @@ Backend: Spring Boot and Docker <br>
 
 Total user stories: 16 <br>
 
+Agile Chart [Here](https://docs.google.com/spreadsheets/d/e/2PACX-1vRIOkGW9-96SggpwWH3LGR5iaCLZx1JWH2g3AIXn2Nk_z8WhchcEORqti9b9e4GnrUDGxzDkrHw4JxA/pubhtml)
+
 <h2>Team Members</h2>
 
 **Luis Morales**: https://github.com/LuiM112<br>
@@ -46,4 +48,5 @@ Reason: Background in Internet Programming that involved Node.js, HTML, and use 
 ### Learning Resources
 [Thymeleaf Documentation](https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html) <br>
 [Spring Optional Path Variables](https://www.baeldung.com/spring-optional-path-variables) <br>
-[Mapping Types Spring Boot](https://www.javaguides.net/2018/11/spring-getmapping-postmapping-putmapping-deletemapping-patchmapping.html)
+[Mapping Types Spring Boot](https://www.javaguides.net/2018/11/spring-getmapping-postmapping-putmapping-deletemapping-patchmapping.html) <br>
+[Check if URL Exists](https://www.baeldung.com/java-check-url-exists)
