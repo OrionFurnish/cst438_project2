@@ -11,11 +11,11 @@ import java.util.List;
 
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Integer> {
-    @Query (value = "SELECT * FROM Item i WHERE i.itemName like %:itemname%",
+    @Query (value = "SELECT * FROM Item i WHERE i.itemName like %:itemName%",
     countQuery = "Select count(*) from Item", nativeQuery = true)
 
     List<Item> findItemByName(
-            @Param("itemname") String itemName
+            @Param("itemName") String itemName
     );
 
 }
