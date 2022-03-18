@@ -2,6 +2,7 @@ package com.groupsix.cst438_project02_wishlist;
 
 import com.groupsix.cst438_project02_wishlist.entities.Item;
 import com.groupsix.cst438_project02_wishlist.entities.User;
+import com.groupsix.cst438_project02_wishlist.entities.Wishlist;
 import com.groupsix.cst438_project02_wishlist.repositories.ItemRepository;
 import com.groupsix.cst438_project02_wishlist.repositories.UserRepository;
 import com.groupsix.cst438_project02_wishlist.repositories.WishlistRepository;
@@ -136,6 +137,22 @@ public class Api {
         return userRepository.findUserById(userId);
     }
 
+    @GetMapping(path = "/findWishlistById")
+    public @ResponseBody Wishlist getWishlist (@RequestParam Integer userId) {
+        return wishlistRepository.findWishlistById(userId);
+
+    }
+
+    @PostMapping(path = "/create_wishlist")
+    public @ResponseBody String createWishlist (@RequestParam Integer userId,
+                                                @RequestParam String listName) {
+        Wishlist wishlist = new Wishlist();
+        wishlist.setUserId(userId);
+        wishlist.setListName(listName);
+        wishlistRepository.save(wishlist);
+        return "Created a wishlist";
+    }
+
 
     @PostMapping(path = "/addItem")
     public @ResponseBody String addItem (@RequestParam String itemUrl,
@@ -161,8 +178,8 @@ public class Api {
     }
 
     @GetMapping(path = "/findItemByName")
-    public @ResponseBody List<Item> findItemByName (@RequestParam String itemName) {
-        return itemRepository.findItemByName(itemName);
+    public @ResponseBody Item findItemByName (@RequestParam Integer wishlistId) {
+        return itemRepository.findItemById(wishlistId);
     }
 
     // Not using this mapping for now. Can ignore.

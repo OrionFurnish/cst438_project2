@@ -27,32 +27,33 @@ public class ListController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/wishlist")
+    @RequestMapping(value = "/create_wishlist")
     String wishlist_create(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
         HttpSession session = request.getSession(false);
 
-        User user = (User) request.getSession().getAttribute("User_session");
+        //Wishlist wishlist = wishlistRepository.findWishlistById(((User) request.getSession().getAttribute("User_Session")).getUserId());
 
-        Wishlist wishlist = wishlistRepository.findWishlistById(user.getUserId());
-
-        return "wishlist_view";
+        return "create_wishlist";
     }
 
     @RequestMapping(value = "/create_wishlist", method = RequestMethod.POST)
     String wishlist(HttpServletRequest request,
                     HttpServletResponse response,
                     Model model,
-                    @RequestParam Integer userId,
-                    @RequestParam String listName){
-        User user = (User) request.getSession().getAttribute("User_session");
-
+                    @RequestParam String listName)throws IOException {
+        User user = ((User) request.getSession().getAttribute("User_Session"));
         Wishlist wishlist = new Wishlist();
-        wishlist.setUserId(user.getUserId());
-        wishlist.setListName(listName);
 
-        wishlistRepository.save(wishlist);
-
-        return "wishlist_page";
+        if(!listName.isEmpty()){
+            wishlist.setUserId(user.getUserId());
+            wishlist.setListName(listName);
+            wishlistRepository.save(wishlist);
+            response.sendRedirect("/");
+        }
+        else{
+            model.addAttribute("Error_Msg", "Have to Name the Wishlist");
+        }
+        return "create_wishlist";
     }
 
 }
