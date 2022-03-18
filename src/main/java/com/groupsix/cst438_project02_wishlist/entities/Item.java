@@ -9,6 +9,7 @@ import javax.persistence.Id;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer wishlistId;
     private Integer itemId;
     private String itemUrl;
     private String itemImgUrl;
