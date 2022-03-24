@@ -11,7 +11,8 @@
 <div class="d-flex justify-content-center">
     <div>
         <div style="padding-top: 30px">
-            <form th:action="@{/addItem}">
+            <form th:action="@{/add_item}">
+                <input type="hidden" th:name="wishlistId" th:value="${WishlistID}"/>
                 <input class="form-control btn btn-primary" type="submit" value="Add Item"> <br><br>
             </form>
         </div>

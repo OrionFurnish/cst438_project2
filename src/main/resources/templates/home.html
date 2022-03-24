@@ -27,22 +27,26 @@
             </tr>
             <form th:action="@{/create_wishlist}" class="ps-5">
                 <input style="padding-left: 10px" class="form-control btn btn-primary" type="submit" value="Create Wishlist"> <br><br>
-                Your Wishlist
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Wishlist</th>
-                        <th> </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="wishlist : ${wishlists}">
-                        <td><span th:text="${wishlist.listName}"></span></td>
-                        <td><span th:text="edit"></span></td>
-                    </tr>
-                    </tbody>
-                </table>
             </form>
+
+            Your Wishlist
+            <table>
+                <thead>
+                <tr>
+                    <th>Wishlist</th>
+                    <th> </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="wishlist : ${wishlists}">
+                    <td><span th:text="${wishlist.listName}"></span></td>
+                    <form th:action="@{/edit_wishlist}">
+                        <input type="hidden" th:name="wishlistId" th:value="${wishlist.wishlistId}"/>
+                        <td><input type="submit" value="Edit"></td>
+                    </form>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
