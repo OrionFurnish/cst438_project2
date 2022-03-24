@@ -49,4 +49,5 @@ Reason: Background in Internet Programming that involved Node.js, HTML, and use 
 [Thymeleaf Documentation](https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html) <br>
 [Spring Optional Path Variables](https://www.baeldung.com/spring-optional-path-variables) <br>
 [Mapping Types Spring Boot](https://www.javaguides.net/2018/11/spring-getmapping-postmapping-putmapping-deletemapping-patchmapping.html) <br>
-[Check if URL Exists](https://www.baeldung.com/java-check-url-exists)
+[Check if URL Exists](https://www.baeldung.com/java-check-url-exists) <br>
+[Binding a List in Thymeleaf](https://www.baeldung.com/thymeleaf-list) <br>
