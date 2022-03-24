@@ -10,6 +10,10 @@
 <h1>Welcome to your Wishlist!</h1>
 <div class="d-flex justify-content-center">
     <div>
+        <form th:action="@{/logout}" method="POST">
+            <input class="form-control btn btn-primary float-left" type="submit" value="Logout">
+        </form>
+
         <div style="padding-top: 30px">
             <form th:action="@{/account_settings}">
                 <input class="form-control btn btn-primary" type="submit" value="Account Settings"> <br><br>

@@ -15,7 +15,7 @@ public class User {
     private String password;
     private boolean isAdmin; // unused
     private boolean admin;
-    private boolean deleteUser;
+    private int delete_user;
 
     public User() {
 
@@ -25,14 +25,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.admin = false;
-        this.deleteUser = false;
+        delete_user = 0;
     }
 
     public User(String username, String password, boolean admin) {
         this.username = username;
         this.password = password;
         this.admin = admin;
-        this.deleteUser = false;
+        delete_user = 0;
     }
 
     @OneToMany
@@ -100,10 +100,6 @@ public class User {
 
     public void setWishlists(List<Wishlist> wishlists) {
         this.wishlists = wishlists;
-    }
-
-    public boolean isDeleteUser() {
-        return deleteUser;
     }
 
 }
