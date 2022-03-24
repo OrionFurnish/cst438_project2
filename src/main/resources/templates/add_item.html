@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
+</head>
+<body>
+    <h2>Add Item</h2>
+    <form th:action="@{/add_item}" method="POST">
+        <input type="hidden" th:name="wishlistId" th:value="${WishlistID}"/>
+        <label for="itemUrl">Item URL:</label><br>
+        <input type="text" id="itemUrl" th:name="itemUrl"><br>
+        <label for="itemImgUrl">Image URL:</label><br>
+        <input type="text" id="itemImgUrl" th:name="itemImgUrl"><br>
+        <label for="itemName">Item Name:</label><br>
+        <input type="text" id="itemName" th:name="itemName"><br>
+        <label for="itemDetails">Item Details:</label><br>
+        <input type="text" id="itemDetails" th:name="itemDetails"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
