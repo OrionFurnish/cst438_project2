@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @SpringBootApplication
@@ -24,14 +25,20 @@ public class Cst438Project02WishlistApplication {
     WishlistRepository wishlistRepository;
 
     @RequestMapping("/")
-     String home(HttpSession session, HttpServletResponse response, Model model) throws IOException {
-        User user = (User)session.getAttribute("User_Session");
+    String home(HttpSession session, HttpServletResponse response, Model model) throws IOException {
+        User user = (User) session.getAttribute("User_Session");
         if(user == null) {
             response.sendRedirect("/landing");
+        } else if (user != null) {
+            List<Wishlist> wishlist = wishlistRepository.findByUserId(user.getUserId());
+            if (wishlist != null) {
+                model.addAttribute("wishlists", wishlist);
+            }
         }
         model.addAttribute("user", user);
         return "home";
     }
+
 
     @RequestMapping(value = "/name")
     @ResponseBody

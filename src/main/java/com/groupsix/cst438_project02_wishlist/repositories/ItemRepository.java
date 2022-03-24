@@ -14,7 +14,7 @@ public interface ItemRepository extends CrudRepository<Item, Integer> {
     @Query (value = "SELECT * FROM Item i WHERE i.wishlistId like %:wishlistId%",
     countQuery = "Select count(*) from Item", nativeQuery = true)
 
-    Item findItemById(
+    List<Item> findItemById(
             @Param("wishlistId") Integer wishlistId
     );
 
