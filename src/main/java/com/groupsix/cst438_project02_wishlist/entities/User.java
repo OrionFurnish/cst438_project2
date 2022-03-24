@@ -101,4 +101,8 @@ public class User {
     public void setWishlists(List<Wishlist> wishlists) {
         this.wishlists = wishlists;
     }
+
+    public int getDelete_user() {
+        return delete_user;
+    }
 }

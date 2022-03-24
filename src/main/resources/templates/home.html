@@ -19,7 +19,6 @@
                 <input class="form-control btn btn-primary" type="submit" value="Account Settings"> <br><br>
             </form>
 
-
             <form th:action="@{/profile_edit}">
                 <input class="form-control btn btn-primary" type="submit" value="Edit Profile"> <br><br>
             </form>
@@ -27,6 +26,14 @@
             <tr th:if="${user?.isAdmin()}">
                 <form th:action="@{/admin_view_users}">
                     <input class="form-control btn btn-primary" type="submit" value="View Users"> <br><br>
+                </form> <br>
+
+                <form th:action="@{/admin_create_user}">
+                    <input class="form-control btn btn-primary" type="submit" value="Create User"> <br><br>
+                </form> <br>
+
+                <form th:action="@{/admin_delete_users}">
+                    <input class="form-control btn btn-primary" type="submit" value="Delete Users"> <br><br>
                 </form>
             </tr>
             <form th:action="@{/create_wishlist}" class="ps-5">
