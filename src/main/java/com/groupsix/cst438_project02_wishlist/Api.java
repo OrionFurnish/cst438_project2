@@ -174,7 +174,6 @@ public class Api {
 
     @GetMapping(path = "/getAllItems")
     public @ResponseBody Iterable<Item> getAllItems() {
-        //itemRepository.deleteAll(itemRepository.findAll());
         return itemRepository.findAll();
     }
 

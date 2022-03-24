@@ -15,6 +15,7 @@ public class User {
     private String password;
     private boolean isAdmin; // unused
     private boolean admin;
+    private int delete_user;
 
     public User() {
 
@@ -24,12 +25,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.admin = false;
+        delete_user = 0;
     }
 
     public User(String username, String password, boolean admin) {
         this.username = username;
         this.password = password;
         this.admin = admin;
+        delete_user = 0;
     }
 
     @OneToMany
