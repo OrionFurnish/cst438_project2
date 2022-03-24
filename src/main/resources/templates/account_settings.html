@@ -19,8 +19,8 @@
     <div>
         <div >
             <form th:action="@{/account_settings}" method="POST">
-                Username<input class="form-control" id="username" type="text" th:name="username" th:value="${username}"><br><br>
-                Current Password<input class="form-control" type="text" th:name="password"><br><br>
+                Username<input class="form-control" id="username" type="text" th:name="username" required="required" th:value="${username}"><br><br>
+                Current Password<input class="form-control" type="text" th:name="password" required="required"><br><br>
                 New Password<input class="form-control" type="text" th:name="newPassword"><br><br>
 
                 <input class="form-control btn btn-primary" type="submit" value="Update Account"/> <br><br>

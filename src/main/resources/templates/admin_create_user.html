@@ -12,15 +12,14 @@
 <!-- Add navigation bar -->
 
 <h1 class="text-center p-4">Admin: Create User</h1>
-<p class="text-center" th:text="${Error_Msg}"></p><br>
 <p class="text-center" th:text="${param.create_success}"></p><br>
 
 <div class="d-flex justify-content-center text-center">
     <div>
         <div >
             <form th:action="@{/admin_create_user}" method="POST">
-                Username<input class="form-control" id="username" type="text" th:name="username"><br><br>
-                Password<input class="form-control" type="text" th:name="password"><br><br>
+                Username<input class="form-control" id="username" type="text" th:name="username" required="required"><br><br>
+                Password<input class="form-control" type="text" th:name="password" required="required"><br><br>
                 Make Admin<br><input type="checkbox" id="admin" th:name="admin"/><br><br>
                 <input class="form-control btn btn-primary" type="submit" value="Create Account"/> <br><br>
             </form><br>

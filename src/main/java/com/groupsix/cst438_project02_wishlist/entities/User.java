@@ -102,4 +102,7 @@ public class User {
         this.wishlists = wishlists;
     }
 
+    public int getDelete_user() {
+        return delete_user;
+    }
 }

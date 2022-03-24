@@ -31,17 +31,14 @@ public class AdminController {
 
     @RequestMapping(value = "admin_create_user", method = RequestMethod.POST)
     String admin_create_user(HttpServletResponse response, HttpSession session, Model model,
-                             @RequestParam String username, @RequestParam String password, @RequestParam boolean admin) throws IOException {
+                             @RequestParam String username, @RequestParam String password, @RequestParam (required = false) boolean admin) throws IOException {
         check_if_admin(response, session);
 
-        if(username.isEmpty() || password.isEmpty()) {
-            model.addAttribute("Error_Msg", "Cannot have empty fields.");
-        } else {
-            User user = new User(username, password);
-            user.setAdmin(admin);
-            userRepository.save(user);
-            //response.sendRedirect("admin_create_user?create_success=User+created+successfully.");
-        }
+        User user = new User(username, password);
+        user.setAdmin(admin);
+        userRepository.save(user);
+        response.sendRedirect("admin_create_user?create_success=User+created+successfully.");
+
         return "admin_create_user";
     }
 
@@ -51,17 +48,17 @@ public class AdminController {
         UserForm userForm = new UserForm();
         userForm.setUserList(new ArrayList<>((Collection<User>) userRepository.findAll()));
         model.addAttribute("userForm", userForm);
+        // TODO: Can either delete yourself and then end session or not show your own account in list of accounts to delete
         return "admin_delete_users";
     }
 
-    @RequestMapping(value = "admin_delete_users", method = RequestMethod.POST)
-    String admin_delete_users(HttpServletResponse response, HttpSession session, Model model, @ModelAttribute UserForm userForm) throws IOException {
+    @RequestMapping(value = "admin_delete_users", method = RequestMethod.DELETE)
+    String admin_delete_users_post(HttpServletResponse response, HttpSession session, Model model, @ModelAttribute ("userForm") UserForm userForm) throws IOException {
         check_if_admin(response, session);
-        ArrayList<User> list = new ArrayList<>();
-        list = userForm.getUserList();
+        ArrayList<User> list = userForm.getUserList();
 
         for(int i = 0; i < list.size(); i++) {
-            if(list.get(i).isDeleteUser()) {
+            if(list.get(i).getDelete_user() == 1) {
                 userRepository.delete(list.get(i));
             }
         }
