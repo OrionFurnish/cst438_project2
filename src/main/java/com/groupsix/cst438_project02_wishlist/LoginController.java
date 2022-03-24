@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class LoginController {
@@ -44,6 +46,12 @@ public class LoginController {
         return "login_page";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    void logout(HttpServletResponse response, HttpSession session) throws IOException {
+        session.setAttribute("User_Session", null);
+        response.sendRedirect("/login");
+    }
+
     @RequestMapping(value = "/create_account")
     String create_account(Model model) {
         return "create_account";
@@ -59,8 +67,15 @@ public class LoginController {
         if(user == null) {
             if(!username.equals("")) {
                 if(password.equals(confirmPassword)) {
-                    userRepository.save(new User(username, password));
-                    response.sendRedirect("/login?success_message=Account+successfully+created.");
+                    // Check password for length and special character
+                    Pattern pattern = Pattern.compile("[^a-z0-9]", Pattern.CASE_INSENSITIVE);
+                    Matcher match = pattern.matcher(password);
+                    if(password.length() >= 6 && match.find()) {
+                        userRepository.save(new User(username, password));
+                        response.sendRedirect("/login?success_message=Account+successfully+created.");
+                    } else {
+                        model.addAttribute("Error_Message", "Password must be at least 6 characters and contain at least 1 special character.");
+                    }
                 } else {
                     model.addAttribute("Error_Message", "Passwords do not match.");
                 }
