@@ -30,16 +30,10 @@ public class listViewController {
     @Autowired
     ItemRepository itemRepository;
 
-    @RequestMapping(value = "/view_list")
-    String view_item_list(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
-        HttpSession session = request.getSession(false);
-        User user = ((User) request.getSession().getAttribute("User_Session"));
-        Wishlist wishlist = wishlistRepository.findWishlistById(user.getUserId());
-        Item item = itemRepository.findItemById(wishlist.getWishlistId());
+    @RequestMapping(value = "/edit_wishlist")
+    String view_item_list(HttpServletResponse response, HttpServletRequest request,HttpSession session, Model model) throws IOException {
 
-        model.addAttribute("item_list",item.getItemName());
-
-        return "listView";
+        return "edit_wishlist";
     }
 
     @RequestMapping(value = "/addItem")
@@ -57,7 +51,7 @@ public class listViewController {
 
         itemRepository.save(item);
 
-        return "Item added";
+        return "edit_wishlist";
 
     }
 }

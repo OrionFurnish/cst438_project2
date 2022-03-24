@@ -139,7 +139,7 @@ public class Api {
 
     @GetMapping(path = "/findWishlistById")
     public @ResponseBody Wishlist getWishlist (@RequestParam Integer userId) {
-        return wishlistRepository.findWishlistById(userId);
+        return (Wishlist) wishlistRepository.findByUserId(userId);
 
     }
 
@@ -179,7 +179,7 @@ public class Api {
 
     @GetMapping(path = "/findItemByName")
     public @ResponseBody Item findItemByName (@RequestParam Integer wishlistId) {
-        return itemRepository.findItemById(wishlistId);
+        return (Item) itemRepository.findItemById(wishlistId);
     }
 
     // Not using this mapping for now. Can ignore.

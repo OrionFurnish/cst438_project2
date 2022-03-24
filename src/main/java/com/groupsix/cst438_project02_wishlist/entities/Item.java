@@ -1,8 +1,6 @@
 package com.groupsix.cst438_project02_wishlist.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import javax.persistence.Id;
 
 @Entity
@@ -26,6 +24,14 @@ public class Item {
 
     public String getItemUrl() {
         return itemUrl;
+    }
+
+    public Integer getWishlistId() {
+        return wishlistId;
+    }
+
+    public void setWishlistId(Integer wishlistId) {
+        this.wishlistId = wishlistId;
     }
 
     public void setItemUrl(String itemUrl) {
