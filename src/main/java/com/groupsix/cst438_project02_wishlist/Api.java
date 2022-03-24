@@ -174,12 +174,13 @@ public class Api {
 
     @GetMapping(path = "/getAllItems")
     public @ResponseBody Iterable<Item> getAllItems() {
+        //itemRepository.deleteAll(itemRepository.findAll());
         return itemRepository.findAll();
     }
 
     @GetMapping(path = "/findItemByName")
-    public @ResponseBody Item findItemByName (@RequestParam Integer wishlistId) {
-        return (Item) itemRepository.findItemById(wishlistId);
+    public @ResponseBody Iterable<Item> findItemByName (@RequestParam Integer wishlistId) {
+        return itemRepository.findItemByWishlistId(wishlistId);
     }
 
     // Not using this mapping for now. Can ignore.

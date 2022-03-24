@@ -9,10 +9,7 @@ import com.groupsix.cst438_project02_wishlist.repositories.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,27 +28,34 @@ public class listViewController {
     ItemRepository itemRepository;
 
     @RequestMapping(value = "/edit_wishlist")
-    String view_item_list(HttpServletResponse response, HttpServletRequest request,HttpSession session, Model model) throws IOException {
-
+    String view_item_list(@RequestParam Integer wishlistId, Model model) throws IOException {
+        model.addAttribute("WishlistID", wishlistId);
         return "edit_wishlist";
     }
 
-    @RequestMapping(value = "/addItem")
-    public @ResponseBody
-    String addItem (@RequestParam String itemUrl,
+    @RequestMapping(value = "/add_item")
+    String addItem(@RequestParam Integer wishlistId, Model model) {
+        model.addAttribute("WishlistID", wishlistId);
+        return "add_item";
+    }
+
+    @RequestMapping(value = "/add_item", method = RequestMethod.POST)
+    void addItem (HttpServletResponse response,
+                    @RequestParam Integer wishlistId,
+                    @RequestParam String itemUrl,
                     @RequestParam String itemImgUrl,
                     @RequestParam String itemName,
-                    @RequestParam String itemDetails){
+                    @RequestParam String itemDetails) throws Exception {
         Item item = new Item();
 
         item.setItemUrl(itemUrl);
         item.setItemImgUrl(itemImgUrl);
         item.setItemName(itemName);
         item.setItemDetails(itemDetails);
+        item.setWishlistId(wishlistId);
 
         itemRepository.save(item);
 
-        return "edit_wishlist";
-
+        response.sendRedirect("edit_wishlist?wishlistId="+wishlistId);
     }
 }

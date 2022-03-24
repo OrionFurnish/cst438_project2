@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/userlist.css}" rel="stylesheet" />
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th> Item URL </th>
+            <th> Item Image URL </th>
+            <th> Item Name </th>
+            <th> Item Details </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td><span th:text="${item.itemUrl}"> </span></td>
+            <td><span th:text="${item.itemImgUrl}"> </span></td>
+            <td><span th:text="${item.itemName}"> </span></td>
+            <td><span th:text="${item.itemDetails}"> </span></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

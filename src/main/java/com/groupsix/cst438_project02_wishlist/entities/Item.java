@@ -7,12 +7,17 @@ import javax.persistence.Id;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer wishlistId;
     private Integer itemId;
+    private Integer id;
+    private Integer wishlistId;
     private String itemUrl;
     private String itemImgUrl;
     private String itemName;
     private String itemDetails;
+
+    public Item() {
+        id = 0;
+    }
 
     public Integer getItemId() {
         return itemId;
