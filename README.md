@@ -8,7 +8,7 @@ Backend: Spring Boot and Docker <br>
 
 Total user stories: 16 <br>
 
-Agile Chart [Here](https://docs.google.com/spreadsheets/d/e/2PACX-1vRIOkGW9-96SggpwWH3LGR5iaCLZx1JWH2g3AIXn2Nk_z8WhchcEORqti9b9e4GnrUDGxzDkrHw4JxA/pubhtml)
+Agile Chart [Here](https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vTo1rCT2MCNwet_qKxYs-CvWAD-Y3_L8XidSpiHuHA2484JcqVnATHNvxmGK9gwnOtk1d1BO6_sTgUN/pubhtml)
 
 <h2>Team Members</h2>
 

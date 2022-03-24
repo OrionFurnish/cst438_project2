@@ -1,6 +1,9 @@
 package com.groupsix.cst438_project02_wishlist;
 
 import com.groupsix.cst438_project02_wishlist.entities.User;
+import com.groupsix.cst438_project02_wishlist.entities.Wishlist;
+import com.groupsix.cst438_project02_wishlist.repositories.WishlistRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +19,9 @@ import java.io.IOException;
 @Controller
 @SpringBootApplication
 public class Cst438Project02WishlistApplication {
+
+    @Autowired
+    WishlistRepository wishlistRepository;
 
     @RequestMapping("/")
      String home(HttpSession session, HttpServletResponse response, Model model) throws IOException {
