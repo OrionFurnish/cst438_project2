@@ -45,26 +45,21 @@ public class AdminController {
     @RequestMapping(value = "admin_delete_users")
     String admin_delete_users(HttpServletResponse response, HttpSession session, Model model) throws IOException {
         check_if_admin(response, session);
-        UserForm userForm = new UserForm();
-        userForm.setUserList(new ArrayList<>((Collection<User>) userRepository.findAll()));
-        model.addAttribute("userForm", userForm);
-        // TODO: Can either delete yourself and then end session or not show your own account in list of accounts to delete
+        model.addAttribute("users", get_user_except_current(session));
         return "admin_delete_users";
     }
 
-    @RequestMapping(value = "admin_delete_users", method = RequestMethod.DELETE)
-    String admin_delete_users_post(HttpServletResponse response, HttpSession session, Model model, @ModelAttribute ("userForm") UserForm userForm) throws IOException {
+    @RequestMapping(value = "admin_delete_users", method = RequestMethod.POST)
+    String admin_delete_users_post(HttpServletResponse response, HttpSession session, Model model,
+                                   @RequestParam(value = "usersToDelete", required = false) int[] usersToDelete) throws IOException {
         check_if_admin(response, session);
-        ArrayList<User> list = userForm.getUserList();
-
-        for(int i = 0; i < list.size(); i++) {
-            if(list.get(i).getDelete_user() == 1) {
-                userRepository.delete(list.get(i));
+        if(usersToDelete != null) {
+            for(int i = 0; i < usersToDelete.length; i++) {
+                userRepository.deleteById(usersToDelete[i]);
             }
         }
-        userForm.setUserList(new ArrayList<>((Collection<User>) userRepository.findAll()));
-        model.addAttribute("userForm", userForm);
-        //response.sendRedirect("admin_delete_users?delete_success=Users+deleted+successfully.");
+        model.addAttribute("users", get_user_except_current(session));
+        response.sendRedirect("admin_delete_users?delete_success=Users+deleted+successfully.");
         return "admin_delete_users";
     }
 
@@ -93,6 +88,11 @@ public class AdminController {
         userRepository.saveAll(userForm.getUserList());
         model.addAttribute("users", userRepository.findAll());
         return "redirect:/admin_view_users";
+    }
+
+    ArrayList<User> get_user_except_current(HttpSession session) throws IOException {
+        User user = (User)session.getAttribute("User_Session");
+        return (ArrayList<User>) userRepository.findAllByUserIdIsNotLike(user.getUserId());
     }
 
     void check_if_admin(HttpServletResponse response, HttpSession session) throws IOException {
