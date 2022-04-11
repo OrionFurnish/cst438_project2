@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 /**
  *  Used to access the User from the database.
  */
@@ -18,4 +20,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     User findUserById(@Param("user_id") Integer user_id);
 
     User findUserByUsername(String username);
+
+    List<User> findAllByUserIdIsNotLike(Integer userId);
 }
